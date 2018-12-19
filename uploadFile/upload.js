@@ -1,10 +1,9 @@
 var express = require('express');
 var app = express();
-var http = require('http').Server(app).listen(3000);
 var upload = require('express-fileupload');
 app.use(upload());
 
-console.log("server started");
+app.listen(3000, () => log(`Server started at port 3000`))
 app.get("/upload", (req, res) => {
     res.sendFile(__dirname + '/main.html');
 })

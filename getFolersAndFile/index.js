@@ -6,7 +6,6 @@
 
 let http = require('http');
 let express = require('express');
-let axios = require('axios');
 let url = require('url');
 let StringDecoder = require('string_decoder').StringDecoder
 let config = require('./config');
@@ -97,9 +96,6 @@ handlers.getAllFilesFromFolder = function(data, callback) {
     }
 };
 
-handlers.downloadItems = function(data, callback) {
-
-};
 
 //Not found handler
 handlers.notFound = function(data, callback) {
@@ -111,5 +107,4 @@ handlers.notFound = function(data, callback) {
 let router = {
     'sample': handlers.sample,
     'getFilesAndFolders': handlers.getAllFilesFromFolder,
-    //'download': handlers.downloadItems
 }

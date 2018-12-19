@@ -33,10 +33,4 @@ const listdir = (req, res, next) => {
 }
 app.use(listdir)
 
-// Routes
-app.get("/", (req, res) => {
-    res.send("Hello")
-})
-
-const port = process.env.PORT || 3000
-app.listen(port, () => log(`Server started at port ${port}`))
+app.listen(3000, () => log(`Server started at port ${port}`))
