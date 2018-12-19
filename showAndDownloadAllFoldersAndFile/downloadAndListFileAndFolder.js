@@ -33,4 +33,4 @@ const listdir = (req, res, next) => {
 }
 app.use(listdir)
 
-app.listen(3000, () => log(`Server started at port ${port}`))
+app.listen(3000, () => log(`Server started at port 3000`))
