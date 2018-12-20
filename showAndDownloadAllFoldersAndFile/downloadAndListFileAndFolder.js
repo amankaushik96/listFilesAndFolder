@@ -21,7 +21,7 @@ const listdir = (req, res, next) => {
     }
 
     fs.readdir(__dirname + '/data/' + path, { withFileTypes: true }, (err, files) => {
-        if (err) return next()
+        if (err) return res.send("Invalid Path");
         files.forEach(file => {
             console.log(path, file.name);
             dirContents += `<li><a href='${file.name}'>${file.name}</a></li>`
