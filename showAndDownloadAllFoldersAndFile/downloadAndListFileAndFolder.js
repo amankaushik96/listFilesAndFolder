@@ -7,7 +7,7 @@ const app = express()
 // server file from public folder
 app.use(express.static("data"))
 
-const listdir = (req, res, next) => {
+const listdir = (req, res) => {
     let path = req.url.split("/").splice(1).join("/")
     let dirContents = "",
         result = "<html><head></head><body><ul>"
@@ -21,7 +21,7 @@ const listdir = (req, res, next) => {
     }
 
     fs.readdir(__dirname + '/data/' + path, { withFileTypes: true }, (err, files) => {
-        if (err) return next()
+        if (err) return res.send("Invalid Path");
         files.forEach(file => {
             console.log(path, file.name);
             dirContents += `<li><a href='${file.name}'>${file.name}</a></li>`
