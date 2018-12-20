@@ -7,7 +7,7 @@ const app = express()
 // server file from public folder
 app.use(express.static("data"))
 
-const listdir = (req, res, next) => {
+const listdir = (req, res) => {
     let path = req.url.split("/").splice(1).join("/")
     let dirContents = "",
         result = "<html><head></head><body><ul>"
