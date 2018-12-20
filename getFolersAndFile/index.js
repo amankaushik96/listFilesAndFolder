@@ -40,7 +40,7 @@ let server = http.createServer(function(req, res) {
 
         chosenHandler(data, function(statusCode, payload) {
             statusCode = typeof(statusCode) == 'number' ? statusCode : 200;
-            payload = typeof(payload) == 'object' ? payload : {};
+            payload = (typeof(payload) == 'object'||typeof(payload)==='string') ? payload : {};
             let payloadString = JSON.stringify(payload);
 
             res.setHeader('Content-Type', 'application/json')
@@ -75,12 +75,11 @@ handlers.getAllFilesFromFolder = function(data, callback) {
     let dir = data.queryStringObj.folderName;
     console.log(dir);
     //  let baseDir = getFolder.getAllFilesFromFolder(__dirname, dir);
-    if (dir !== undefined) {
         fs.readdir("./" + dir, {
                 withFileTypes: true
             }, (err, files) => {
                 if (err) {
-                    console.log("No such directory found");
+                    callback(200,"No such folder found in root")
                 } else {
                     files.forEach(file => {
                         var name = file.name;
@@ -91,9 +90,6 @@ handlers.getAllFilesFromFolder = function(data, callback) {
                 }
             })
             // console.log(JSON.stringify(result));
-    } else {
-        callback(404);
-    }
 };
 
 
